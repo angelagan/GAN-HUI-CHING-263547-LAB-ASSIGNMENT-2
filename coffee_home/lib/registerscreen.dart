@@ -12,18 +12,19 @@ class RegisterScreen extends StatefulWidget {
 }
 
 class _RegisterScreenState extends State<RegisterScreen> {
+  bool _passwordVisible = false;
+  bool _rememberMe = false;
+  bool _termCondition = false;
+  double screenHeight, screenWidth;
   final TextEditingController _namecontroller = TextEditingController();
   final TextEditingController _emcontroller = TextEditingController();
   final TextEditingController _pscontroller = TextEditingController();
   final TextEditingController _phcontroller = TextEditingController();
-  double screenHeight, screenWidth;
   String _email = "";
   String _password = "";
   String _name = "";
   String _phone = "";
-  bool _passwordVisible = false;
-  bool _rememberMe = false;
-  bool _termCondition = false;
+
   // bool _autoValidate = false;
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
@@ -74,7 +75,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.brown),
+                      color: Colors.brown[900]),
                 )),
                 Container(
                     child: TextFormField(
@@ -89,7 +90,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.brown),
+                      color: Colors.brown[900]),
                 )),
                 Container(
                     child: TextFormField(
@@ -104,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.brown),
+                      color: Colors.brown[900]),
                 )),
                 Container(
                     child: TextFormField(
@@ -116,7 +117,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   style: TextStyle(
                       fontSize: 16,
                       fontWeight: FontWeight.bold,
-                      color: Colors.brown),
+                      color: Colors.brown[900]),
                   decoration: InputDecoration(
                     labelText: 'Password',
                     icon: Icon(Icons.lock),
@@ -149,7 +150,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.brown))
+                            color: Colors.brown[900]))
                   ],
                 ),
                 Row(
@@ -166,7 +167,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             style: TextStyle(
                                 fontSize: 16,
                                 fontWeight: FontWeight.bold,
-                                color: Colors.brown))),
+                                color: Colors.brown[900]))),
                   ],
                 ),
                 SizedBox(height: 10),
@@ -176,7 +177,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   minWidth: 300,
                   height: 50,
                   child: Text('Register',style: TextStyle(fontSize: 16,fontWeight: FontWeight.bold)),
-                  color: Colors.brown,
+                  color: Colors.brown[900],
                   textColor: Colors.white,
                   elevation: 15,
                   onPressed: _newRegister,
@@ -188,7 +189,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         style: TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
-                            color: Colors.brown))),
+                            color: Colors.indigo[700]))),
               ],
             ),
           )),
@@ -213,7 +214,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         type: ProgressDialogType.Normal, isDismissible: false);
     pr.style(message: "Registration...");
     await pr.show();
-    http.post("http://doubleksc.com/coffee_home/php/register_user.php", body: {
+    http.post("http://doubleksc.com/coffee_home/php/PHPMailer/index.php", body: {
       "name": _name,
       "email": _email,
       "password": _password,
@@ -322,29 +323,29 @@ class _RegisterScreenState extends State<RegisterScreen> {
         // return object of type Dialog
         return AlertDialog(
           title: new Text(
-            "Do you want to register new account? ",
+            "Register New Account? ",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.brown,
+              color: Colors.indigo[800],
             ),
           ),
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(20.0)),
           content: new Text(
-            "Are you sure?",
+            "Are You Sure?",
             style: TextStyle(
               fontWeight: FontWeight.bold,
-              color: Colors.brown,
+              color: Colors.brown[900],
             ),
           ),
           actions: <Widget>[
             // usually buttons at the bottom of the dialog
             new FlatButton(
               child: new Text(
-                "Yes",
+                "Yes, Register",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.brown,
+                  color: Colors.green[700],
                 ),
               ),
               onPressed: () {
@@ -354,10 +355,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
             new FlatButton(
               child: new Text(
-                "No",
+                "No, Cancel",
                 style: TextStyle(
                   fontWeight: FontWeight.bold,
-                  color: Colors.brown,
+                  color: Colors.red[700],
                 ),
               ),
               onPressed: () {
@@ -377,7 +378,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         return AlertDialog(
           title: new Text("End-User License Agreement (EULA) of Coffee Home",
               style:
-                  TextStyle(fontWeight: FontWeight.bold, color: Colors.brown)),
+                  TextStyle(fontWeight: FontWeight.bold, color: Colors.indigo[800])),
           content: new Container(
             height: 500,
             child: Column(
@@ -406,7 +407,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               child: new Text("Close",
                   style: TextStyle(
                     fontWeight: FontWeight.bold,
-                    color: Colors.brown,
+                    color: Colors.indigo[800],
                   )),
               onPressed: () {
                 Navigator.of(context).pop();
